@@ -11,7 +11,12 @@ class OwnershipsController < ApplicationController
     
     if params[:type] == 'Want'
       current_user.want(@item)
-      flash[:success] = '商品を Want しました。'
+      flash[:success] = '商品をWantしました。'
+    end
+    
+    if params[:type] == 'Have'
+      current_user.have(@item)
+      flash[:success] = '商品をHaveしました。'
     end
     
     redirect_back(fallback_location: root_path)
@@ -23,7 +28,12 @@ class OwnershipsController < ApplicationController
     
     if params[:type] == 'Want'
       current_user.unwant(@item)
-      flash[:danger] = '商品を Wantを解除しました。'
+      flash[:success] = '商品を un-Want しました。'
+    end
+    
+    if params[:type] == 'Have'
+      current_user.unhave(@item)
+      flash[:success] = '商品を un-Have しました。'
     end
     
     redirect_back(fallback_location: root_path)
